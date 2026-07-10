@@ -146,6 +146,7 @@ bool QoiDecode(uint32_t &width, uint32_t &height, uint8_t &channels, uint8_t &co
             uint8_t run = QoiReadU8();
             r = pre_r; g = pre_g; b = pre_b; a = pre_a;
             for (int i = 0; i < run + 1; ++i) {
+                if (pixels_decoded >= px_num) return false;
                 QoiWriteU8(r); QoiWriteU8(g); QoiWriteU8(b);
                 if (channels == 4) QoiWriteU8(a);
                 pixels_decoded++;
